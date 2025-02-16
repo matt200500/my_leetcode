@@ -11,7 +11,6 @@ public:
         }
 
         while(left_pointer <= right_pointer){
-            cout << "we enter\n";
             while (left_pointer < right_pointer && !std::isalnum(*left_pointer)) {
                 ++left_pointer;
             }
