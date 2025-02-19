@@ -1,24 +1,22 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        return binarysearch(nums.begin(), nums.end(), target, nums.begin());
+        return binarysearch(0, nums.size() - 1, target, nums);
     }
 
 private:
-    int binarysearch(std::vector<int>::iterator start, std::vector<int>::iterator end, int target, std::vector<int>::iterator begin){
-        int size = std::distance(start,end);
-        if (size <= 0) return -1;  
+    int binarysearch(int start, int end, int target, vector<int>& nums){
+        if (nums.size() <= 0 || start > end) return -1;  
 
-        auto middle = start + size/ 2;
-        if (*middle == target){
-            return std::distance(begin,middle);
+        int middle = start + (end - start) / 2;
+        if (nums[middle] == target){
+            return middle;
         }
 
-        int output1 = binarysearch(start, middle, target, begin);
-        if (output1 != -1){
-            return output1;
+        if (nums[middle] > target){
+            return binarysearch(start, middle - 1, target, nums);
+        }else{
+            return binarysearch(middle + 1, end, target, nums);
         }
-        return binarysearch(middle+1, end, target, begin);
-
     }
 };
