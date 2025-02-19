@@ -9,31 +9,33 @@ public:
     }
     
     string get(string key, int timestamp) {
-        return binary_search(key, 0, timeMap[key].size() -1, timestamp, -1);
+        auto &records = timeMap[key];
+        if (records.empty()) return "";
+        return binary_search(records, timestamp);
     }
 private:
     unordered_map<string, vector<pair<int, string>>> timeMap;
 
-    std::string binary_search(string key, int start, int end, int target, int next_largest){
+    std::string binary_search(vector<pair<int, string>> &records, int target){
+        int start = 0, end = records.size() - 1;
+        int next_largest = -1;
+
         while(start <= end){
             int middle = start + (end - start) /2;
-            if (timeMap[key].size() == 0){
-                return "";
-            }
 
-            if(timeMap[key][middle].first == target){
-                return timeMap[key][middle].second;
+            if(records[middle].first == target){
+                return records[middle].second;
             }
-            if(timeMap[key][middle].first < target){
+            if(records[middle].first < target){
                 next_largest = middle;
                 start = middle+1;
             }else{
                 end = middle -1;
             }
         }
-        
+
         if (next_largest != -1){
-            return timeMap[key][next_largest].second;
+            return records[next_largest].second;
         }else{
             return "";
         }
