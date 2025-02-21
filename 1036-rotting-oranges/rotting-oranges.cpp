@@ -2,28 +2,27 @@ class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
         int minutes = 0;
+        int total_oranges = 0;
         queue<tuple<int,int>> q;
         for (int row = 0; row < grid.size(); ++row){
             for (int column = 0; column < grid[0].size(); ++column){
                 if(grid[row][column] == 2){
                     q.push({row, column});
                 }
-            }
-        }
-        BFS(grid, minutes, q);
-
-        for (int row = 0; row < grid.size(); ++row){
-            for (int column = 0; column < grid[0].size(); ++column){
-                if(grid[row][column] == 1){
-                    return -1;
+                if (grid[row][column] == 1){
+                    ++total_oranges;
                 }
             }
+        }
+        BFS(grid, minutes, q, total_oranges);
+        if (total_oranges != 0){
+            return -1;
         }
         return minutes;
     }
 
 private:
-    void BFS(vector<vector<int>>& grid, int& minutes, queue<tuple<int,int>>& q){
+    void BFS(vector<vector<int>>& grid, int& minutes, queue<tuple<int,int>>& q, int& total_oranges){
         while(!q.empty()){
             bool rotted = false;
             std::vector<tuple<int,int>> next_level;
@@ -51,21 +50,25 @@ private:
                     grid[current_row + 1][current_column] = 2;
                     next_level.push_back({current_row + 1, current_column});
                     rotted = true;
+                    --total_oranges;
                 }
                 if (current_row - 1 >= 0 && grid[current_row - 1][current_column] == 1) {
                     grid[current_row - 1][current_column] = 2;
                     next_level.push_back({current_row - 1, current_column});
                     rotted = true;
+                    --total_oranges;
                 }
                 if (current_column + 1 < grid[0].size() && grid[current_row][current_column + 1] == 1) {
                     grid[current_row][current_column + 1] = 2;
                     next_level.push_back({current_row, current_column + 1});
                     rotted = true;
+                    --total_oranges;
                 }
                 if (current_column - 1 >= 0 && grid[current_row][current_column - 1] == 1) {
                     grid[current_row][current_column - 1] = 2;
                     next_level.push_back({current_row, current_column - 1});
                     rotted = true;
+                    --total_oranges;
                 }
             }
 
