@@ -4,9 +4,9 @@ public:
         std::unordered_set<char> open_brackets = {'(', '{', '['};
         std::unordered_set<std::string> valid_pairs = {"()", "{}", "[]"};
         std::stack<char> current_brackets;
-        // if (s.length() % 2 != 0){ // cant be odd
-        //     return false;
-        // }
+        if (s.length() % 2 != 0){ // cant be odd
+            return false;
+        }
         for (int i = 0; i < s.length(); ++i){
             if (open_brackets.find(s[i]) != open_brackets.end()){ // if open
                 current_brackets.push(s[i]);
