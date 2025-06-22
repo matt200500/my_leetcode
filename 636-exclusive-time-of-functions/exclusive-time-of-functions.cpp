@@ -10,7 +10,6 @@ public:
             std::vector<string> parts;
             std::string part;
 
-            // Parse exactly 3 parts
             getline(log_stream, part, ':'); parts.push_back(part);
             getline(log_stream, part, ':'); parts.push_back(part);
             getline(log_stream, part, ':'); parts.push_back(part);
