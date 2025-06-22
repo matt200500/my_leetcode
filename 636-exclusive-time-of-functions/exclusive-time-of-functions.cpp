@@ -27,7 +27,7 @@ public:
             } else {
                 result[running_programs.top()] += timestamp - previous_time + 1;
                 running_programs.pop();
-                previous_time = timestamp + 1; // <-- FIXED HERE
+                previous_time = timestamp + 1;
             }
         }
 
