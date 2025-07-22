@@ -3,13 +3,6 @@ public:
     bool isPalindrome(string s) {
         auto left_pointer = s.begin();
         auto right_pointer = --s.end();
-        while (left_pointer <= right_pointer && !std::isalnum(*left_pointer)) {
-            ++left_pointer;
-        }
-        while (right_pointer >= left_pointer && !std::isalnum(*right_pointer)) {
-            --right_pointer;
-        }
-
         while(left_pointer <= right_pointer){
             while (left_pointer < right_pointer && !std::isalnum(*left_pointer)) {
                 ++left_pointer;
