@@ -8,7 +8,6 @@ public:
             current_palindrome = s[i];
             int left_char = i-1;
             int right_char = i+1;
-            // cout << "current char " << s[i] << "\n";
             bool all_same = true;
             while(right_char < s.length()){
                 if(left_char >= 0 && s[left_char] == s[right_char]){
@@ -16,8 +15,6 @@ public:
                         all_same = false;
                     }
                     current_palindrome = s.substr(left_char, right_char - left_char + 1);
-                    // cout << "current palindrome 1" << current_palindrome << "\n";
-
                     if(current_palindrome.length() > longest_palindrome.length()){
                         longest_palindrome = current_palindrome;
                     }
@@ -27,7 +24,6 @@ public:
 
                 } else if ( all_same == true && s[right_char] == s[i]){
                     current_palindrome = s.substr(i, right_char - i + 1);
-                    // cout << "current palindrome 2" << current_palindrome << "\n";
 
                     if(current_palindrome.length() > longest_palindrome.length()){
                         longest_palindrome = current_palindrome;
