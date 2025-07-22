@@ -11,10 +11,8 @@ public:
                 output.push_back(i);
                 return output;
             }
-            auto it = numbers.find(nums[i]);
-            if (it == numbers.end()){
-                numbers[nums[i]] = i;
-            }
+            numbers[nums[i]] = i;
+
         }
         return output;  
     }
