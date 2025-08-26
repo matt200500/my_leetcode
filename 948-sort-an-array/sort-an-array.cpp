@@ -51,29 +51,29 @@ public:
 
             if(leftNum>=rightNum){
                 nums[currIdx] = rightNum;
-                left_2++;
+                ++left_2;
             }
             else{
                 nums[currIdx] = leftNum;
-                left_1++;
+                ++left_1;
             }
-            currIdx++;
+            ++currIdx;
         }
 
         // while arr1
         while(left_1<= right_1){
             int leftNum = left[left_1];
             nums[currIdx] = leftNum;
-            left_1++;           
-            currIdx++;
+            ++left_1;           
+            ++currIdx;
         }
         // while arr2
 
         while(left_2<= right_2){
             int leftNum = right[left_2];
             nums[currIdx] = leftNum;
-            left_2++;           
-            currIdx++;
+            ++left_2;           
+            ++currIdx;
         }
     }
 
