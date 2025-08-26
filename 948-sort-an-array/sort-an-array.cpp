@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
+        std::vector<int> temp(nums.size());
         split(nums, 0, nums.size() -1);
         return nums;
     }
@@ -23,15 +24,17 @@ public:
         
         split(nums, start, middle);
         split(nums, middle+1, end);
-        
-        vector<int> leftArr;
-        for(int i = start;i<=middle;++i){
-            leftArr.push_back(nums[i]);
+        int left_size = middle - start + 1;
+        int right_size = end - middle;
+
+        vector<int> leftArr(left_size);
+        for(int i = 0; i < (left_size);++i){
+            leftArr[i] = nums[i + start];
         }
 
-        vector<int> rightArr;
-        for(int i = middle+1; i<=end;++i){
-            rightArr.push_back(nums[i]);
+        vector<int> rightArr(right_size);
+        for(int i = 0; i < right_size;++i){
+            rightArr[i] = nums[i + middle + 1];
         }
         
         
