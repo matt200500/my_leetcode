@@ -1,46 +1,26 @@
 class Solution {
 public:
-    bool isStrictlyDecreasing(vector<int>& nums, int start){
-        // checks if everyhing from start to end of nums is striclty decremented
-        while(start <nums.size()-1){
-            if(nums[start]<nums[start+1]){
-                return false;
-            }
-            start++;
-        }
-        return true;
-    }
     void nextPermutation(vector<int>& nums) {
-        if(nums.size()==1){
-            return;
-        }
-
-        int start = nums.size()-2;
-        int end = nums.size() -1;
-
-        while(start>=0 && isStrictlyDecreasing(nums,start)){
-            --start;
-        }
-        if(start<0){
-            std::sort(nums.begin(), nums.end());
-            return;
-        }
-
-        int firstDigitInSubArr = nums[start];
-        std::sort(nums.begin() + start, nums.end());
-
-        int i = start;
-        while( i < nums.size()){
-            if(nums[i]>firstDigitInSubArr){
+        int pivot = -1;
+        for (int i = nums.size() -2; i >= 0; i--){
+            if (nums[i] < nums[i+1]){
+                pivot = i;
                 break;
-            } 
-            ++i;
+            }
+        } 
+        int smallest_index = pivot + 1;
+
+        if (pivot != -1){
+            for (int i = nums.size() -1; i > pivot; i--){
+                if (nums[i] > nums[pivot]){
+                    smallest_index = i;
+                    break;
+                }
+            }
+            std::swap(nums[pivot], nums[smallest_index]); // Swap pivot with the found element
+            std::reverse(nums.begin() + (pivot + 1), nums.end());
+        }else{
+            std::reverse(nums.begin(), nums.end());
         }
-    
-        int temp = nums[i];
-        nums[i] = nums[start];
-        nums[start] = temp;
-        ++start;
-        std::sort(nums.begin() + start, nums.end());
     }
 };
