@@ -22,7 +22,7 @@ public:
             vector<int> newAns = {main_start,main_end};
             output.push_back(newAns);
             if(!entered_loop){
-                i++;
+            ++i;
             }
         }
         return output;
