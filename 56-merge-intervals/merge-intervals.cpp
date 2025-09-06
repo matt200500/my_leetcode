@@ -1,11 +1,7 @@
 class Solution {
 public:
-    static bool sorting (vector<int>& a, vector<int>& b){
-        return a[0] < b[0];
-    }
-
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        std::sort(intervals.begin(), intervals.end(), sorting);
+        std::sort(intervals.begin(), intervals.end());
 
         vector<vector<int>> output;
         int main_start, main_end;
